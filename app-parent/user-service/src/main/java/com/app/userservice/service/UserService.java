@@ -68,11 +68,10 @@ public class UserService {
         return userMapper.entityToDto(existingUser);
     }
 
-    public Long removeUser(Long id) {
+    public void removeUser(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
         userRepository.delete(user);
-        return id;
     }
 
     private void validateUserDoesNotExist(UserRequestDTO dto, Long currentUserId) {
